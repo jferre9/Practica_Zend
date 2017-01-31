@@ -28,8 +28,22 @@ class LoginController extends Zend_Controller_Action {
 
     public function indexAction() {
 
+        $alumne = new Application_Model_DbTable_Alumne();
+        $sessio = new Zend_Session_Namespace();
 
-        $this->view->form = $this->getForm();
+        if ($this->getRequest()->isPost()) {
+            $dni = $this->getRequest()->getParam('dni');
+            $pass  = $this->getRequest()->getParam('pass');
+            
+            if ($dni === "admin" && $pass === "admin") {
+                
+            } else {
+                $dades = $alumne->login($dni, $pass);
+                if ($dades) {
+                    
+                }
+            }
+        }
     }
 
     public function csvAction() {
