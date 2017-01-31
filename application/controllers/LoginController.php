@@ -53,7 +53,7 @@ class LoginController extends Zend_Controller_Action {
         while (($data = fgetcsv($myfile)) != null) {
             $alumne->insertarCSV($data);
         }
-        
+        fclose($myfile);
         
         //$this->redirect("login");
     }
