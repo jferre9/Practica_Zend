@@ -27,6 +27,7 @@
       <modelsDirectory>
         <dbTableDirectory>
           <dbTableFile dbTableName="Alumne"/>
+          <dbTableFile dbTableName="Festa"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>

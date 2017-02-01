@@ -3,15 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/models/DbTable/Alumne.php</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/controllers/IndexController.php</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/views/scripts/login/index.phtml</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/configs/application.ini</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/Bootstrap.php</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/controllers/FestaController.php</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/public/.htaccess</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/layouts/scripts/layout.phtml</file>
-            <file>file:/C:/Users/joan/Desktop/Practica_Zend/application/controllers/LoginController.php</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/layouts/scripts/layout.phtml</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/LoginController.php</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/FestaController.php</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/.zfproject.xml</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/IndexController.php</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/models/DbTable/Alumne.php</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/views/scripts/login/index.phtml</file>
         </group>
     </open-files>
 </project-private>

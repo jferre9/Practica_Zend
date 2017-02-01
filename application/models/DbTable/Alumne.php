@@ -5,12 +5,13 @@ class Application_Model_DbTable_Alumne extends Zend_Db_Table_Abstract {
     protected $_name = 'alumne';
 
     public function login($dni, $pass) {
-        //$select = $this->select()->where('dni = ?', $dni);
+        $select = $this->fetchRow($this->select()->where('dni = ?', $dni)->where('pass = ?',$pass));
 //        $select = $this->fetchAll(
 //                $this->select()->where('true')
 //                );
-        $select = $this->find(1);
-        var_dump($select);
+        if ($select == NULL) return false;
+        $usuari = array('id'=>$select->id,'dni'=>$select->dni,'nom'=>$select->nom);
+        return $usuari;
     }
 
     public function insertarCSV($data) {

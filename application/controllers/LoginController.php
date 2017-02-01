@@ -2,8 +2,11 @@
 
 class LoginController extends Zend_Controller_Action {
 
+    //public $sessio;
+    
     public function init() {
         /* Initialize action controller here */
+        //$this->sessio = new Zend_Session_Namespace();
     }
 
     private function getForm() {
@@ -28,8 +31,10 @@ class LoginController extends Zend_Controller_Action {
 
     public function indexAction() {
 
-        $alumne = new Application_Model_DbTable_Alumne();
         $sessio = new Zend_Session_Namespace();
+        //Zend_Session::namespaceUnset('default');
+        $alumne = new Application_Model_DbTable_Alumne();
+        var_dump($sessio->usuari);
 
         if ($this->getRequest()->isPost()) {
             $dni = $this->getRequest()->getParam('dni');
@@ -40,7 +45,9 @@ class LoginController extends Zend_Controller_Action {
             } else {
                 $dades = $alumne->login($dni, $pass);
                 if ($dades) {
-                    
+                    var_dump($dades);
+                    $sessio->usuari = $dades;
+                    $this->redirect('');
                 }
             }
         }
