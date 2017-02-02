@@ -18,7 +18,17 @@
                 <td><?php echo $f["data"] ?></td>
                 <td><?php echo $f["participants"] ?></td>
                 <td>
-                    <a class="btn <?php echo $f["apuntat"]?"btn-danger":"btn-info"?>" href="<?php echo $this->url(array('controller'=>'index','action'=>'apuntar','id'=>$f["id"])) ?>"><?php echo $f["apuntat"]?"Desapuntar-se":"Apuntar-se" ?></a>
+                    <?php
+                    if (!$f["apuntat"]) {
+                        ?>
+                    <a class="btn btn-info" href="<?php echo $this->url(array('controller'=>'index','action'=>'apuntar','id'=>$f["id"])) ?>">Apuntar-se</a>
+                    <?php
+                    } else {
+                        ?>
+                    <a class="btn btn-danger" href="<?php echo $this->url(array('controller'=>'index','action'=>'desapuntar','id'=>$f["id"])) ?>">Desapuntar-se</a>
+                    <?php
+                    }
+                    ?>
                 </td>
                 <td><a class="btn btn-info" href="<?php echo $this->url(array('controller'=>'index','action'=>'detalls','id'=>$f["id"])) ?>">Detalls</a></td>
                 </tr>

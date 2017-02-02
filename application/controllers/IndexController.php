@@ -19,6 +19,8 @@ class IndexController extends Zend_Controller_Action
         $this->view->festes = $festa->getFestes($this->sessio->usuari["id"]);
         $this->view->festesPropies = $festa->getFestesAlumne($this->sessio->usuari["id"]);
         
+        var_dump($this->view->festes);
+        
         
         
         
@@ -37,11 +39,41 @@ class IndexController extends Zend_Controller_Action
         $id = $this->sessio->usuari["id"];
         
         $idFesta = $this->_getParam('id');
+        
+        if ($idFesta !== NULL) {
+            $festa = new Application_Model_DbTable_Festa();
+            $festa->apuntar($id,$idFesta);
+        }
+        $this->redirect('');
+    }
+
+    public function crearAction()
+    {
         // action body
+        $alumne = new Application_Model_DbTable_Alumne();
+        $this->view->alumnes = $alumne->fetchAll(array('id != ?'=>$this->sessio->usuari["id"]));
+        
+    }
+
+    public function desapuntarAction()
+    {
+        // action body
+        $id = $this->sessio->usuari["id"];
+        
+        $idFesta = $this->_getParam('id');
+        
+        if ($idFesta == NULL) {
+            $this->redirect('');
+        }
+        $participant = new Application_Model_DbTable_Participant();
+        $participant->desapuntar($id,$idFesta);
     }
 
 
 }
+
+
+
 
 
 

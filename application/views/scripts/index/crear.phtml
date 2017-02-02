@@ -1,0 +1,14 @@
+<div class="container">
+    <form method="post" name="f1">
+        participants
+        <select class="selectpicker" data-live-search="true" multiple>
+            <?php
+            foreach ($this->alumnes as $a) {
+                ?>
+                <option data-tokens="<?php echo $a->nom ?>" value="<?php echo $a->id ?>"><?php echo $a->nom ?></option>
+                <?php
+            }
+            ?>
+        </select>
+    </form>
+</div>

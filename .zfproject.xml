@@ -11,6 +11,8 @@
           <actionMethod actionName="index"/>
           <actionMethod actionName="detalls"/>
           <actionMethod actionName="apuntar"/>
+          <actionMethod actionName="crear"/>
+          <actionMethod actionName="desapuntar"/>
         </controllerFile>
         <controllerFile controllerName="Login">
           <actionMethod actionName="index"/>
@@ -30,6 +32,7 @@
         <dbTableDirectory>
           <dbTableFile dbTableName="Alumne"/>
           <dbTableFile dbTableName="Festa"/>
+          <dbTableFile dbTableName="Participant"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -53,6 +56,12 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="apuntar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="crear"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Index">
+            <viewScriptFile forActionName="desapuntar"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
