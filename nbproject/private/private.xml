@@ -5,11 +5,12 @@
         <group>
             <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/layouts/scripts/layout.phtml</file>
             <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/LoginController.php</file>
-            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/FestaController.php</file>
             <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/.zfproject.xml</file>
             <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/IndexController.php</file>
             <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/models/DbTable/Alumne.php</file>
             <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/views/scripts/login/index.phtml</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/models/DbTable/Festa.php</file>
+            <file>file:/E:/DAW/M07_DWS_PHP/UF2/zend/Practica_Zend/application/controllers/FestaController.php</file>
         </group>
     </open-files>
 </project-private>

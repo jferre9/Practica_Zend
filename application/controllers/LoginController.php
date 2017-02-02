@@ -30,6 +30,8 @@ class LoginController extends Zend_Controller_Action {
     }
 
     public function indexAction() {
+        
+        
 
         $sessio = new Zend_Session_Namespace();
         //Zend_Session::namespaceUnset('default');
@@ -41,6 +43,7 @@ class LoginController extends Zend_Controller_Action {
             $pass  = $this->getRequest()->getParam('pass');
             
             if ($dni === "admin" && $pass === "admin") {
+                
                 
             } else {
                 $dades = $alumne->login($dni, $pass);
