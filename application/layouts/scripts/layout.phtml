@@ -32,6 +32,15 @@
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.2/js/bootstrap-select.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">
+<script src="https://unpkg.com/flatpickr"></script>
+<script src="https://npmcdn.com/flatpickr/dist/flatpickr.min.js"></script>
+<script src="https://npmcdn.com/flatpickr/dist/l10n/cat.js"></script>
+<style>
+    .bootstrap-select {
+        width: 100% !important;
+    }
+</style>
     </head>
     <body>
         <nav class="navbar navbar-inverse navbar-static-top">
@@ -74,9 +83,7 @@
             </div>
         </div>-->
 
-
-            <label class="control-label">Select File</label>
-    <input id="input-1" type="file" class="file" data-allowed-file-extensions='["csv"]' data-show-preview="false">
+        
         
     </body>
         <script src="<?php echo $this->baseUrl() . "/recursos/js/bootstrap.min.js" ?>"></script>

@@ -1,14 +1,51 @@
 <div class="container">
+    <h2>Crear festa</h2>
     <form method="post" name="f1">
-        participants
-        <select class="selectpicker" data-live-search="true" multiple>
+        <?php
+        if (isset($this->organitzadors)) {
+            ?>
+            <div class="form-group">
+                <label>Data de la festa:</label>
+                <input class="form-control flatpickr" type="text" name="data" required="required">
+            </div>
             <?php
-            foreach ($this->alumnes as $a) {
+            foreach ($this->organitzadors as $a) {
                 ?>
-                <option data-tokens="<?php echo $a->nom ?>" value="<?php echo $a->id ?>"><?php echo $a->nom ?></option>
+
+                <div class="form-group">
+                    <label>Data naixament de <?php echo $a->nom ?></label>
+                    <input class="form-control flatpickr2" type="text" name="data_naix[<?php echo $a->id ?>]" required="required">
+
+                </div>
                 <?php
             }
+        } else {
             ?>
-        </select>
+            <div class="form-group">
+                <label>Altres organitzadors:</label>
+                <select class="selectpicker" name="organitzadors[]" data-live-search="true" multiple>
+                    <?php
+                    foreach ($this->alumnes as $a) {
+                        ?>
+                        <option value="<?php echo $a->id ?>"><?php echo $a->nom . " " . $a->dni ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
+            </div>
+
+            <?php
+        }
+        ?>
+        <input type="submit" class="btn btn-info" value="Enviar"/>
     </form>
 </div>
+<script type="text/javascript">
+    flatpickr(".flatpickr", {
+        enableTime: true,
+        "locale": "cat"
+    });
+    flatpickr(".flatpickr2", {
+        "locale": "cat"
+    });
+</script>

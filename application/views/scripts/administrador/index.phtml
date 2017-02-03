@@ -1,0 +1,22 @@
+<div class="container">
+    <form method="post" enctype="multipart/form-data">
+        <label class="control-label">Select File</label>
+        <input id="csv" name="csv" type="file" class="file" data-allowed-file-extensions='["csv"]' data-show-preview="false">
+    </form>
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th><th>DNI</th><th>NOM</th>
+        </tr>
+        <?php
+        foreach ($this->alumnes as $a) {
+            ?>
+            <tr>
+                <td><?php echo $a->id ?></td>
+                <td><?php echo $a->dni ?></td>
+                <td><?php echo $a->nom ?></td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>

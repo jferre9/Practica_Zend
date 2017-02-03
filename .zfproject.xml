@@ -21,6 +21,9 @@
         <controllerFile controllerName="Festa">
           <actionMethod actionName="index"/>
         </controllerFile>
+        <controllerFile controllerName="Administrador">
+          <actionMethod actionName="index"/>
+        </controllerFile>
       </controllersDirectory>
       <formsDirectory enabled="false"/>
       <layoutsDirectory>
@@ -33,6 +36,7 @@
           <dbTableFile dbTableName="Alumne"/>
           <dbTableFile dbTableName="Festa"/>
           <dbTableFile dbTableName="Participant"/>
+          <dbTableFile dbTableName="Organitzador"/>
         </dbTableDirectory>
       </modelsDirectory>
       <modulesDirectory enabled="false"/>
@@ -62,6 +66,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Index">
             <viewScriptFile forActionName="desapuntar"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Administrador">
+            <viewScriptFile forActionName="index"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>
