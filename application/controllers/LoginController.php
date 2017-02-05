@@ -1,24 +1,24 @@
 <?php
 
-class LoginController extends Zend_Controller_Action {
+class LoginController extends Zend_Controller_Action
+{
 
-    //public $sessio;
-    
-    public function init() {
+    public function init()
+    {
         /* Initialize action controller here */
         //$this->sessio = new Zend_Session_Namespace();
     }
 
-    
-
-    public function indexAction() {
+    public function indexAction()
+    {
         
         
 
         $sessio = new Zend_Session_Namespace();
-        Zend_Session::namespaceUnset('default');
+        $sessio->admin = NULL;
+        $sessio->usuari = NULL;
         $alumne = new Application_Model_DbTable_Alumne();
-        var_dump($sessio->usuari);
+//        var_dump($sessio->usuari);
 
         if ($this->getRequest()->isPost()) {
             $dni = $this->getRequest()->getParam('dni');
@@ -30,7 +30,7 @@ class LoginController extends Zend_Controller_Action {
             } else {
                 $dades = $alumne->login($dni, $pass);
                 if ($dades) {
-                    var_dump($dades);
+//                    var_dump($dades);
                     $sessio->usuari = $dades;
                     $this->redirect('');
                 }
@@ -38,5 +38,49 @@ class LoginController extends Zend_Controller_Action {
         }
     }
 
-   
+    public function apuntarAction()
+    {
+        $idAlumne = $this->getParam('id');
+        $idFesta = $this->getParam('festa');
+        $codi = $this->getParam('codi');
+        
+        if ($idAlumne == NULL || $idFesta == NULL || $codi == NULL) {
+            $this->redirect('login');
+        }
+        $modelAlumne = new Application_Model_DbTable_Alumne();
+        $alumne = $modelAlumne->find($idAlumne)->current();
+        if ($alumne == NULL || $alumne->codi !== $codi) {
+            $this->redirect('login');
+        }
+        
+        $festa = new Application_Model_DbTable_Festa();
+        if ($festa->find($idFesta)->current() == NULL) {
+            $this->redirect('login');
+        }
+        
+        //miro que no sigui un organitzador
+        $organitzador = new Application_Model_DbTable_Organitzador();
+        if ($organitzador->find($idFesta,$idAlumne)->current() !== NULL) {
+            $this->redirect('login');
+        }
+        
+        
+        //si ja hi esta inscrit no fa res i el logueja
+        $participant = new Application_Model_DbTable_Participant();
+        if ($participant->find($idFesta,$idAlumne)->current() == NULL) {
+            exit("aqui");
+            $participant->insert(array('festa_id'=>$idFesta,'alumne_id'=>$idAlumne));
+        }
+        
+        $dades = $modelAlumne->login($alumne->dni, $alumne->pass);
+        $sessio = new Zend_Session_Namespace();
+        $sessio->usuari = $dades;
+        $this->redirect('');
+        
+        
+    }
+
+
 }
+
+

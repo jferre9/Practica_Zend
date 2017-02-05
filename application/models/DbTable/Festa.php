@@ -66,6 +66,7 @@ class Application_Model_DbTable_Festa extends Zend_Db_Table_Abstract {
         foreach ($dates as $key => $value) {
             $organitzador->insert(array('festa_id' => $id, 'alumne_id' => $key, 'data_naix' => $value));
         }
+        return $id;
     }
 
 }

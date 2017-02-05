@@ -1,6 +1,52 @@
 <div class="container">
+    
+    <p><b>Data:</b> <?php echo $this->festa->data ?></p>
+    
     <h2>Organitzadors</h2>
     
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>DNI</th>
+            <th>NOM</th>
+            <th>DATA NAIXEMENT</th>
+        </tr>
+        <?php
+        
+        foreach ($this->organitzadors as $a) {
+            ?>
+        <tr>
+            <td><?php echo $a->id ?></td>
+            <td><?php echo $a->dni ?></td>
+            <td><?php echo $a->nom ?></td>
+            <td><?php echo $a->data_naix ?></td>
+        </tr>
+        <?php
+        }
+        
+        ?>
+    </table>
         
     <h2>Participants</h2>
+    
+    <table class="table table-hover">
+        <tr>
+            <th>ID</th>
+            <th>DNI</th>
+            <th>NOM</th>
+        </tr>
+        <?php
+        
+        foreach ($this->participants as $a) {
+            ?>
+        <tr>
+            <td><?php echo $a->id ?></td>
+            <td><?php echo $a->dni ?></td>
+            <td><?php echo $a->nom ?></td>
+        </tr>
+        <?php
+        }
+        
+        ?>
+    </table>
 </div>

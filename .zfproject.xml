@@ -17,6 +17,7 @@
         <controllerFile controllerName="Login">
           <actionMethod actionName="index"/>
           <actionMethod actionName="csv"/>
+          <actionMethod actionName="apuntar"/>
         </controllerFile>
         <controllerFile controllerName="Festa">
           <actionMethod actionName="index"/>
@@ -69,6 +70,9 @@
           </viewControllerScriptsDirectory>
           <viewControllerScriptsDirectory forControllerName="Administrador">
             <viewScriptFile forActionName="index"/>
+          </viewControllerScriptsDirectory>
+          <viewControllerScriptsDirectory forControllerName="Login">
+            <viewScriptFile forActionName="apuntar"/>
           </viewControllerScriptsDirectory>
         </viewScriptsDirectory>
         <viewHelpersDirectory/>

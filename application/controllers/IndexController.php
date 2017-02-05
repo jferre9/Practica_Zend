@@ -17,13 +17,27 @@ class IndexController extends Zend_Controller_Action {
         $this->view->festes = $festa->getFestes($this->sessio->usuari["id"]);
         $this->view->festesPropies = $festa->getFestesAlumne($this->sessio->usuari["id"]);
 
-        var_dump($this->view->festes);
+//        var_dump($this->view->festes);
     }
 
     public function detallsAction() {
         // action body
         $id = $this->sessio->usuari["id"];
         $idFesta = $this->_getParam('id');
+
+
+        $festa = new Application_Model_DbTable_Festa();
+        $this->view->festa = $festa->find($idFesta)->current();
+
+        if ($this->view->festa == NULL) {
+            $this->redirect('');
+        }
+
+
+        $alumne = new Application_Model_DbTable_Alumne();
+
+        $this->view->organitzadors = $alumne->getOrganitzadors($idFesta);
+        $this->view->participants = $alumne->getParticipants($idFesta);
     }
 
     public function apuntarAction() {
@@ -54,9 +68,9 @@ class IndexController extends Zend_Controller_Action {
             $organitzadors = $this->getParam('organitzadors');
             $dates = $this->getParam('data_naix');
             $data = $this->getParam('data');
-            
 
-            
+
+
             if ($dates != NULL && $data != NULL) {
 
 
@@ -79,7 +93,8 @@ class IndexController extends Zend_Controller_Action {
                     }
                 }
                 $festa = new Application_Model_DbTable_Festa();
-                $festa->crear($dates,$data);
+                $idFesta = $festa->crear($dates, $data);
+                $this->enviarCorreu($dates, $idFesta);
                 $this->redirect('');
             } else {
                 if ($organitzadors == NULL) {
@@ -109,11 +124,46 @@ class IndexController extends Zend_Controller_Action {
 
         $idFesta = $this->_getParam('id');
 
-        if ($idFesta == NULL) {
-            $this->redirect('');
+        if ($idFesta !== NULL) {
+            $participant = new Application_Model_DbTable_Participant();
+            $participant->desapuntar($id, $idFesta);
         }
-        $participant = new Application_Model_DbTable_Participant();
-        $participant->desapuntar($id, $idFesta);
+        $this->redirect('');
+    }
+
+    //$dates te les ids dels organitzadors que no han de rebre el mail
+    public function enviarCorreu($dates, $festaId) {
+
+        $config = array(
+            'ssl' => 'tls',
+            'auth' => 'login',
+            'username' => 'w2.joan.ferre@gmail.com',
+            'password' => '123456789AA'
+        );
+        $transport = new Zend_Mail_Transport_Smtp('smtp.gmail.com', $config);
+        Zend_Mail::setDefaultTransport($transport);
+
+
+//        $mail->addTo('jofe93@gmail.com', 'Joan')
+//                ->setFrom('w2.joan.ferre@gmail.com', 'Myself')
+//                ->setSubject("T'han invitat a una festa")
+//                ->setBodyHtml("prova")
+//                ->send();
+
+
+        $alumne = new Application_Model_DbTable_Alumne();
+        $alumnes = $alumne->fetchAll();
+        foreach ($alumnes as $a) {
+            if (!isset($dates[$a->id])) {
+                echo "<br>$a->mail<br>";
+                $mail = new Zend_Mail();
+                $mail->addTo($a->mail, $a->nom)
+                        ->setFrom('w2.joan.ferre@gmail.com', 'Myself')
+                        ->setSubject("T'han invitat a una festa")
+                        ->setBodyHtml("Hola $a->nom, algú t'ha inviat a la seva festa.<br><a href='" . $this->view->serverUrl() . $this->view->baseUrl() . "/login/apuntar/festa/" . $festaId . "/id/" . $a->id . "/codi/" . $a->codi . "'>Apuntar-s'hi</a>", "utf-8")
+                        ->send();
+            }
+        }
     }
 
 }

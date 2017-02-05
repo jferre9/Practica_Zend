@@ -33,16 +33,17 @@ class AdministradorController extends Zend_Controller_Action {
     public function indexAction() {
         // action body
         $alumne = new Application_Model_DbTable_Alumne();
+        $this->view->error = "";
         $this->view->alumnes = $alumne->fetchAll();
-        if (!$this->getRequest()->isPost()) {
+        if ($this->getRequest()->isPost()) {
 
             $form = $this->getForm();
             if (!$form->isValid($_POST)) {
-                echo "no es valid";
+                $this->view->error = "Fitxer no vàlid";
                 return;
             }
             if (!$form->csv->receive()) {
-                print "Error receiving the file";
+                $this->view->error = "Error al rebre el fitxer";
                 return;
             }
 
@@ -52,6 +53,7 @@ class AdministradorController extends Zend_Controller_Action {
             $myfile = fopen($location, "r");
 
             while (($data = fgetcsv($myfile)) != null) {
+                echo "asd";
                 $alumne->insertarCSV($data);
             }
             fclose($myfile);
