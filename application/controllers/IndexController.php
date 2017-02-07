@@ -97,9 +97,12 @@ class IndexController extends Zend_Controller_Action {
                         return;
                     }
                 }
+                $lloc = $this->getParam('lloc');
                 $festa = new Application_Model_DbTable_Festa();
-                $idFesta = $festa->crear($dates, $data);
-                $this->enviarCorreu($dates, $idFesta);
+                $idFesta = $festa->crear($dates, $data,$lloc);
+                if ($this->getParam('enviarmail')) {
+                    $this->enviarCorreu($dates, $idFesta);
+                }
                 $this->redirect('');
             } else {
                 if ($organitzadors == NULL) {

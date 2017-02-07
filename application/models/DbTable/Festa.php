@@ -58,10 +58,10 @@ class Application_Model_DbTable_Festa extends Zend_Db_Table_Abstract {
      * 
      * @param array $dates array de id => data dels organitzadors
      */
-    public function crear($dates, $dia) {
+    public function crear($dates, $dia, $lloc) {
         //falta comprovar que no canviin la id amb f12
         $organitzador = new Application_Model_DbTable_Organitzador();
-        $id = $this->insert(array('data' => $dia));
+        $id = $this->insert(array('data' => $dia, 'lloc'=>$lloc));
 
         foreach ($dates as $key => $value) {
             $organitzador->insert(array('festa_id' => $id, 'alumne_id' => $key, 'data_naix' => $value));
