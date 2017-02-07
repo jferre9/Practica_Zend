@@ -10,7 +10,7 @@ class Application_Model_DbTable_Festa extends Zend_Db_Table_Abstract {
         FROM festa f 
         LEFT JOIN participant p on p.festa_id = f.id
         LEFT JOIN organitzador o on o.festa_id = f.id
-        where o.alumne_id = ?
+        where o.alumne_id = ? AND f.data > NOW()
         GROUP BY f.id");
 
         $sql->execute(array($alumne_id));
@@ -26,7 +26,7 @@ class Application_Model_DbTable_Festa extends Zend_Db_Table_Abstract {
         LEFT JOIN participant p on p.festa_id = f.id
         where ? NOT IN (
             SELECT o.alumne_id FROM organitzador o where o.festa_id = f.id
-        )
+        ) AND f.data > NOW()
         GROUP BY f.id");
         $sql->execute(array($alumne_id, $alumne_id));
         //var_dump($sql);

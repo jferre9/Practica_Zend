@@ -68,7 +68,6 @@ class LoginController extends Zend_Controller_Action
         //si ja hi esta inscrit no fa res i el logueja
         $participant = new Application_Model_DbTable_Participant();
         if ($participant->find($idFesta,$idAlumne)->current() == NULL) {
-            exit("aqui");
             $participant->insert(array('festa_id'=>$idFesta,'alumne_id'=>$idAlumne));
         }
         

@@ -19,6 +19,11 @@ class IndexController extends Zend_Controller_Action {
 
 //        var_dump($this->view->festes);
     }
+	/*
+	TODO afegir camp lloc
+	afegir checkbox per enviar invitacions
+	
+	*/
 
     public function detallsAction() {
         // action body
